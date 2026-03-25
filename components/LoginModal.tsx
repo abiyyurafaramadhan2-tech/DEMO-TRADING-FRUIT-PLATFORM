@@ -108,4 +108,78 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
       </div>
     </div>
   );
+}              className={`flex-1 py-3 text-sm font-semibold transition-all capitalize ${tab === t ? "text-purple-300 border-b-2 border-purple-500" : "text-slate-500 hover:text-slate-300"}`}
+            >
+              {t === "login" ? "Login" : "Register"}
+            </button>
+          ))}
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-6 flex flex-col gap-4">
+          {/* Roblox OAuth button */}
+          <button
+            type="button"
+            className="w-full flex items-center justify-center gap-2.5 py-3 rounded-xl font-semibold text-sm transition-all hover:opacity-90 hover:scale-[1.02] border border-white/10"
+            style={{ background: "rgba(255,255,255,0.06)", color: "#fff" }}
+          >
+            <span className="text-lg">🎮</span>
+            Continue with Roblox
+          </button>
+
+          <div className="flex items-center gap-3">
+            <div className="flex-1 h-px bg-white/10" />
+            <span className="text-slate-500 text-xs">or</span>
+            <div className="flex-1 h-px bg-white/10" />
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <div>
+              <label className="text-xs text-slate-400 uppercase tracking-wider mb-1.5 block">Username</label>
+              <input
+                type="text"
+                required
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Your username..."
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 transition-all"
+              />
+            </div>
+            <div>
+              <label className="text-xs text-slate-400 uppercase tracking-wider mb-1.5 block">Password</label>
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 transition-all"
+              />
+            </div>
+          </div>
+
+          {tab === "login" && (
+            <div className="flex justify-end">
+              <button type="button" className="text-xs text-purple-400 hover:text-purple-300 transition-colors">Forgot password?</button>
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-3 rounded-xl font-bold text-sm text-white transition-all hover:opacity-90 hover:scale-[1.02] disabled:opacity-60 disabled:scale-100"
+            style={{ background: "linear-gradient(135deg, #7c3aed, #4f46e5)" }}
+          >
+            {loading ? "Loading..." : tab === "login" ? "Login" : "Create Account"}
+          </button>
+
+          <p className="text-center text-xs text-slate-500">
+            {tab === "login" ? "Don't have an account? " : "Already have an account? "}
+            <button type="button" onClick={() => setTab(tab === "login" ? "register" : "login")} className="text-purple-400 hover:text-purple-300 transition-colors font-medium">
+              {tab === "login" ? "Register" : "Login"}
+            </button>
+          </p>
+        </form>
+      </div>
+    </div>
+  );
 }
