@@ -45,4 +45,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </body>
     </html>
   );
+}            </p>
+            <p className="text-slate-600 text-xs">
+              This is a fan-made 3rd party website not affiliated with Blox Fruits or Roblox Corporation.
+            </p>
+          </div>
+        </footer>
+
+        {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
+      </body>
+    </html>
+  );
 }
